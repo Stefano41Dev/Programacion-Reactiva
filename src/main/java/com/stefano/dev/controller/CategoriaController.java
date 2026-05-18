@@ -35,14 +35,14 @@ public class CategoriaController {
     }
 
     @DeleteMapping("/{id}")
-    public void eliminarCategoria(
+    public Mono<Void> eliminarCategoria(
             @PathVariable Integer id
     ){
-        categoriaService.eliminarCategoria(id);
+        return categoriaService.eliminarCategoria(id);
     }
 
     @GetMapping("/{nombre}")
-    public Mono<CategoriaDtoResponse> buscarCategoriaPorNombre(
+    public Flux<CategoriaDtoResponse> buscarCategoriaPorNombre(
             @PathVariable String nombre
     ){
         return categoriaService.buscarCategoria(nombre);
