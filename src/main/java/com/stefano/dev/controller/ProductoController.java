@@ -21,14 +21,31 @@ public class ProductoController {
     ){
         return productoService.agregarProducto(request);
     }
+
     @GetMapping
     public Flux<ProductoDtoResponse> listarProducto(){
         return productoService.listarProducto();
     }
+
     @GetMapping("/{nombre}")
     public Flux<ProductoDtoResponse> buscarProductoPorNombre(
             @PathVariable String nombre
     ){
         return productoService.buscarProductoPorNombre(nombre);
+    }
+
+    @PutMapping("/{id}")
+    public Mono<ProductoDtoResponse> actualizarProducto(
+            @PathVariable Integer id,
+            @RequestBody ProductoDtoRequest request
+    ){
+        return productoService.actualizarProducto(id,request);
+    }
+
+    @DeleteMapping("/{id}")
+    public Mono<Void> eliminarProducto(
+            @PathVariable Integer id
+    ){
+        return productoService.eliminarProducto(id);
     }
 }
