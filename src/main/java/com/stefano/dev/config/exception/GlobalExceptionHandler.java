@@ -11,6 +11,6 @@ import java.time.LocalDateTime;
 public class GlobalExceptionHandler {
     @ExceptionHandler(ErrorMensaje.class)
     public ResponseEntity<Object> handleBusinessException(ErrorMensaje ex){
-        return ResponseEntity.status(ex.getStatus()).body(new ErrorDto(ex.getMessage(), LocalDateTime.now()));
+        return ResponseEntity.status(ex.getStatus()).body(new ErrorDto(ex.getMessage(), LocalDateTime.now(),ex.getStatus().value()));
     }
 }
